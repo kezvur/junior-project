@@ -2,8 +2,6 @@ pipeline {
     agent any
 
     environment {
-        PATH=sh(script:"echo $PATH:/usr/local/bin", returnStdout:true).trim()
-        AWS_REGION = "us-east-1"
         DOCKERHUB_USERNAME = "insaniso"
         DOCKERHUB_PASSWORD = "dckr_pat_XgUyvGfEEwW9CWcNEP5lQazKlI8"
         // DOCKERHUB_USERNAME = credentials('dockerhub_username')
@@ -12,7 +10,6 @@ pipeline {
         POSTGRE_REPO_NAME = "postgre"
         NODEJS_REPO_NAME = "nodejs"
         REACT_REPO_NAME = "react"
-        APP_NAME = "todo"
     }
 
     stages {

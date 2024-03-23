@@ -42,18 +42,21 @@ resource "aws_instance" "tf-car-rental" {
   }
 
   user_data = <<-EOF
-          #! /bin/bash
-          dnf update -y
-          hostnamectl set-hostname jenkins-server
-          dnf install git -y
+          #!/bin/bash
+          # Update system packages and install necessary tools
+          yum update -y
+          yum install git -y
+          yum install java-11-amazon-corretto -y
+
+          # Install Jenkins
           wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
           rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-          dnf upgrade
-          dnf install java-11-amazon-corretto -y
-          dnf install jenkins -y
+          yum install jenkins -y
           systemctl enable jenkins
           systemctl start jenkins
-          dnf install docker -y
+
+          # Install Docker and Docker Compose
+          yum install docker -y
           systemctl start docker
           systemctl enable docker
           usermod -a -G docker ec2-user
@@ -61,20 +64,25 @@ resource "aws_instance" "tf-car-rental" {
           cp /lib/systemd/system/docker.service /lib/systemd/system/docker.service.bak
           sed -i 's/^ExecStart=.*/ExecStart=\/usr\/bin\/dockerd -H tcp:\/\/127.0.0.1:2376 -H unix:\/\/\/var\/run\/docker.sock/g' /lib/systemd/system/docker.service
           systemctl daemon-reload
-          systemctl restart jenkins
+
+          # Install Docker Compose
           curl -SL https://github.com/docker/compose/releases/download/v2.17.3/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
           chmod +x /usr/local/bin/docker-compose
-          dnf install -y python3-pip python3-devel
+
+          # Install Python 3 and necessary Python packages
+          yum install -y python3-pip python3-devel
           pip3 install ansible
           pip3 install boto3 botocore
+
+          # Install Terraform
           wget https://releases.hashicorp.com/terraform/1.4.6/terraform_1.4.6_linux_amd64.zip
           unzip terraform_1.4.6_linux_amd64.zip -d /usr/local/bin
-          
+
+          # Clone the GitHub repository and set permissions
+          cd /home/ec2-user
           git clone https://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@github.com/YusufArikdogan/${data.github_repository.myrepo.name}.git
           chown -R ec2-user:ec2-user ${data.github_repository.myrepo.name}
-          EOF
-
-  
+        EOF
 }
 
 resource "aws_security_group" "car-rental-SG" {
