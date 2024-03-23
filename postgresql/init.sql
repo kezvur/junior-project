@@ -1,6 +1,6 @@
-CREATE DATABASE juniortodo;
+CREATE DATABASE juniortodoo;
 
-\c juniortodo;
+\c juniortodoo;
 
 CREATE TABLE todo(
     todo_id SERIAL PRIMARY KEY,
