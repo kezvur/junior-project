@@ -9,8 +9,8 @@ services:
       
     ports:
       - "80:3000"
-    # environment: 
-    #   - APP_URL=http://localhost:9090/car-rental/api/
+    environment: 
+      - APP_URL=http://localhost:9090/car-rental/api/
     networks:
       - carrental-net
   app:
