@@ -14,6 +14,6 @@ RUN npm install
 # copy all files into the image
 COPY ./nodejs/server/ .
 
-EXPOSE 5000
+EXPOSE 9090
 
 CMD ["node","app.js"]
