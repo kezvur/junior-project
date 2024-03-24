@@ -23,7 +23,7 @@ services:
       - "9090:9090"
     restart: always
     environment:
-      - DATABASE_URL=jdbc:postgresql://db:5432/juniortodo
+      - DATABASE_URL=jdbc:postgresql://db:5432/ juniortodoo
     networks:
       - carrental-net
           
