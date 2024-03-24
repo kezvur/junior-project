@@ -1,7 +1,7 @@
 version: '3'
 services:
   ui:
-    image: 'insaniso/react:latest'
+    image: 'keziban/todoreact:latest'
     container_name: brc-frontend
     depends_on:
       - app
@@ -14,7 +14,7 @@ services:
     networks:
       - carrental-net
   app:
-    image: 'insaniso/nodejs:latest'
+    image: 'keziban/todobac:latest'
     container_name: brc-backend
     depends_on:
       - db
@@ -28,7 +28,7 @@ services:
       - carrental-net
           
   db:
-    image: 'insaniso/postgre:latest'
+    image: 'keziban/todopostgre:latest'
     container_name: postgres
     environment:
       - POSTGRES_USER=postgres
