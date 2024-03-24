@@ -17,7 +17,7 @@ provider "aws" {
 
 provider "github" {
   # Configuration options
-  token = "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"
+  token = ""
 }
 
 data "github_repository" "myrepo" {
@@ -80,7 +80,7 @@ resource "aws_instance" "tf-car-rental" {
 
           # Clone the GitHub repository and set permissions
           cd /home/ec2-user
-          git clone https://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@github.com/YusufArikdogan/${data.github_repository.myrepo.name}.git
+          git clone https://@github.com/YusufArikdogan/${data.github_repository.myrepo.name}.git
           chown -R ec2-user:ec2-user ${data.github_repository.myrepo.name}
         EOF
 }
