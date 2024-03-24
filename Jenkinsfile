@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_USERNAME = "insaniso"
-        DOCKERHUB_PASSWORD = "dckr_pat_XgUyvGfEEwW9CWcNEP5lQazKlI8"
+        DOCKERHUB_USERNAME = "keziban"
+        DOCKERHUB_PASSWORD = "08062012EEM.,t"
         // DOCKERHUB_USERNAME = credentials('dockerhub_username')
         // DOCKERHUB_PASSWORD = credentials('dockerhub_password')
-        DOCKERHUB_REGISTRY = "insaniso"
-        POSTGRE_REPO_NAME = "postgre"
-        NODEJS_REPO_NAME = "nodejs"
-        REACT_REPO_NAME = "react"
+        DOCKERHUB_REGISTRY = "keziban"
+        POSTGRE_REPO_NAME = "todopostgre"
+        NODEJS_REPO_NAME = "todobac"
+        REACT_REPO_NAME = "todoreact"
     }
 
     stages {
