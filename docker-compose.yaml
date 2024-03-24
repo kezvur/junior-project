@@ -23,7 +23,7 @@ services:
       - "9090:9090"
     restart: always
     environment:
-      - DATABASE_URL=jdbc:postgresql://db:5432/ juniortodoo
+      - DATABASE_URL=jdbc:postgresql://db:5432/juniortodoo
     networks:
       - carrental-net
           
@@ -33,7 +33,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Pp123456789
-      - POSTGRES_DB=juniortodo
+      - POSTGRES_DB=juniortodoo
 
     ports:
       - "5432:5432"
